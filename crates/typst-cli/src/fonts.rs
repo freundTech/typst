@@ -108,7 +108,7 @@ impl FontSearcher {
     #[cfg(feature = "embed-fonts")]
     fn add_embedded(&mut self) {
         for data in typst_assets::fonts() {
-            let buffer = typst::foundations::Bytes::from_static(data);
+            let buffer = typst::foundations::Bytes::from(data);
             for (i, font) in Font::iter(buffer).enumerate() {
                 self.book.push(font.info().clone());
                 self.fonts.push(FontSlot {
