@@ -17,6 +17,7 @@ RUN --mount=type=cache,target=/root/.cargo/git/db \
 
 RUN xx-apk add --no-cache musl-dev openssl-dev openssl-libs-static
 RUN xx-cargo --print-target-triple
+RUN echo $TARGETPLATFORM
 RUN --mount=type=cache,target=/root/.cargo/git/db \
     --mount=type=cache,target=/root/.cargo/registry/cache \
     --mount=type=cache,target=/root/.cargo/registry/index \
