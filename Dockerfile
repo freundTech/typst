@@ -1,6 +1,5 @@
 ARG CREATED
 ARG REVISION
-ARG TARGETPLATFORM
 
 FROM --platform=$BUILDPLATFORM tonistiigi/xx AS xx
 FROM --platform=$BUILDPLATFORM rust:alpine AS build
@@ -14,6 +13,8 @@ RUN --mount=type=cache,target=/root/.cargo/git/db \
     --mount=type=cache,target=/root/.cargo/registry/index \
     CARGO_REGISTRIES_CRATES_IO_PROTOCOL=sparse \
     cargo fetch
+
+ARG TARGETPLATFORM
 
 RUN xx-apk add --no-cache musl-dev openssl-dev openssl-libs-static
 RUN xx-cargo --print-target-triple
